@@ -99,21 +99,26 @@ const getMyUser = (req, res) => {
 
 const updateMyUser = (req, res) => {
   const id = req.user.id;
+  const {firstName, lastName, phone, birthday, gender, country } = req.body;
   // res.status(200).json(req.body)
-  usersControllers.updateUser(id, req.body)
-    .then(data => {
-      res.status(200).json({message: `User with ID: ${id}, edited succesfully`})
+  usersControllers.updateUser(id, {firstName, lastName, phone, birthday, gender, country })
+    .then(() => {
+      res.status(200).json({message: `Your user was edited succesfully!`})
     })
     .catch(error => {
       res.status(400).json({message: error.message})
     })
 }
 
+// existen dos tipos de delete: 
+// 1. por mi mismo.
+// 2. por administrados.
+
 const deleteMyUser = (req, res) => {
   const id = req.user.id;
-  usersControllers.deleteUser(id)
+  usersControllers.updateUser(id, {status: 'inactive'})
     .then(() => {
-      res.status(204).json()
+      res.status(204).json({message: `Your user was deleted succesfully!`})
     })
     .catch(err => {
       res.status(400).json({message: err.message})

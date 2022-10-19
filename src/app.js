@@ -8,6 +8,7 @@ const authRouter = require('./auth/auth.router')
 // Initial configs
 const app = express()
 
+const initModels = require('./models/initiModels')
 app.use(express.json())
 
 db.authenticate()
@@ -26,6 +27,7 @@ db.sync()
       console.log(err)
   })
 
+initModels()
 
 app.get('/', (req, res) => {
   res.status(200).json({
