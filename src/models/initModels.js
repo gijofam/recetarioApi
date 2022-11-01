@@ -5,41 +5,44 @@ const UsersIngredients = require('./users_ingredients.models')
 const Instructions = require('./instructions.models')
 const Categories = require('./categories.models')
 const UsersRecipes = require('./users_recipes.models')
-const Type = require('./types.models')
+const Types = require('./types.models')
 const RecipesIngredients = require('./recipes_ingredients.models')
 
 const initModels = () => {
-    Users.belongsTo(Recipes)
-    Recipes.hasMany(Users)
+// hasMany llave foranea lleva dentro del parentesis
+// belongTo llave foranea lleva en el primer parametro antes del punto
 
-    Users.belongsTo(UsersIngredients)
-    UsersIngredients.hasMany(Users)
-
-    Users.belongsTo(UsersRecipes)
-    UsersRecipes.hasMany(Users)
-
-    Recipes.belongsTo(UsersIngredients)
-    UsersIngredients.hasMany(Recipes)
-
-    Recipes.belongsTo(Instructions)
-    Instructions.hasMany(Recipes)
+    Users.hasMany(Recipes)
+    Recipes.belongsTo(Users)
     
-    Recipes.belongsTo(UsersRecipes)
-    UsersRecipes.hasMany(Recipes)
+    Recipes.hasMany(Instructions)
+    Instructions.belongsTo(Recipes)
+    
+    
+    Categories.hasMany(Recipes)
+    Recipes.belongsTo(Categories) 
+    
+    Types.hasMany(Ingredients)
+    Ingredients.belongsTo(Types)
 
-    Recipes.belongsTo(RecipesIngredients)
-    RecipesIngredients.hasMany(Recipes)
+    Recipes.hasMany(UsersRecipes)
+    UsersRecipes.belongsTo(Recipes)
+    
+    Users.hasMany(UsersIngredients)
+    UsersIngredients.belongsTo(Users)
 
-    Categories.belongsTo(Recipes)
-    Recipes.hasMany(Categories)
+    Users.hasMany(UsersRecipes)
+    UsersRecipes.belongsTo(Users)
+    
+    Recipes.hasMany(RecipesIngredients)
+    RecipesIngredients.belongsTo(Recipes)
 
-    Type.belongsTo(Ingredients)
-    Ingredients.hasMany(Type)
+    Ingredients.hasMany(UsersIngredients)
+    UsersIngredients.belongsTo(Ingredients)
 
-    Ingredients.belongsTo(RecipesIngredients)
-    RecipesIngredients.hasMany(Ingredients)
+    Ingredients.hasMany(RecipesIngredients)
+    RecipesIngredients.belongsTo(Ingredients)
 
 }
-
 
 module.exports = initModels

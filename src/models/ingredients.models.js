@@ -14,10 +14,10 @@ const Ingredients = db.define('ingredients', {
         allowNull: false,
         unique: true
     },
-    tipeId: {
+    typeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        field: 'tipe_id',
+        field: 'type_id',
         references: {
             key: 'id',
             model: Types

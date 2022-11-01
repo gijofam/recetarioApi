@@ -5,11 +5,16 @@ const db = require('./utils/database')
 const {port} = require('./config')
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
+const cors = require('cors')
 // Initial configs
 const app = express()
+const initModels = require('./models/initModels')
+const categoriesRouter = require('./categories/categories.router')
 
-const initModels = require('./models/initiModels')
+
 app.use(express.json())
+
+app.use(cors())
 
 db.authenticate()
   .then(() => {
@@ -29,6 +34,7 @@ db.sync()
 
 initModels()
 
+
 app.get('/', (req, res) => {
   res.status(200).json({
     message: 'OK!',
@@ -38,6 +44,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/categories', categoriesRouter)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)
