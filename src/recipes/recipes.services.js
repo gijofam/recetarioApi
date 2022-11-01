@@ -22,7 +22,7 @@ const getRecipeById = (req, res) => {
             res.status(200).json({message: err.message})
         })
 }
-const createRecipes = (req, res) => {
+const createRecipe = (req, res) => {
     const userId = req.user.id
     const {title, description, urlImg, time, portions, categoryId, origin} = req.body
     if(title && description && time && portions && categoryId ){
@@ -78,7 +78,7 @@ const deleteRecipe = (req, res) => {
 module.exports = {
     getAllRecipes,
     getRecipeById,
-    createRecipes,
+    createRecipe,
     patchRecipe,
     deleteRecipe
 }
