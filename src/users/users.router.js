@@ -26,6 +26,8 @@ router.route('/me')
   .patch(passport.authenticate('jwt', {session: false}), userServices.updateMyUser)
   .delete(passport.authenticate('jwt', {session: false}), userServices.deleteMyUser)
 
+// TODO agregar la ruta para optener mis recetas 
+
 // rutas dinamicas por ID /users/:id
 // router.get('/:id')
 // router.patch('/:id')
@@ -42,8 +44,6 @@ router.route('/:id')
   .delete(passport.authenticate('jwt', {session: false}),
   adminValidate,
   userServices.deleteUser)
-
-
 
 
   module.exports = router

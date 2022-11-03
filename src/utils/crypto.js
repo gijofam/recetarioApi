@@ -15,7 +15,7 @@ const comparePassword = (plainPassword, hashedPassword) => {
     return bcrypt.compareSync(plainPassword, hashedPassword)
 }
 
-console.log(hashPassword('root'))
+// console.log(hashPassword('root'))
 
 // console.log(comparePassword('root', '$2b$10$QR1CpdOItQAqwKWpPDx2WeV5oDYPS34DTqGJuykaAYQfj2Dgz02my'))
 

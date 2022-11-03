@@ -11,7 +11,7 @@ const app = express()
 const initModels = require('./models/initModels')
 const categoriesRouter = require('./categories/categories.router')
 const recipeRouter = require('./recipes/recipes.router')
-
+const ingredientRouter = require('./ingredients/ingredients.router')
 
 app.use(express.json())
 
@@ -47,6 +47,7 @@ app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/categories', categoriesRouter)
 app.use('/api/v1/recipes', recipeRouter)
+app.use('/api/v1/ingredients', ingredientRouter)
 
 app.listen(port, () => {
     console.log(`Server started at port ${port}`)

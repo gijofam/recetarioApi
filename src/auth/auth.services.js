@@ -27,7 +27,8 @@ const login = (req, res) => {
         }
       })
       .catch(error => {
-
+        res.status(400).json({message: error.message})
+        // aqui falto completar VERIFICAR ESTO
       })
   }else{
     res.status(400).json({message: 'Missing Data'})
